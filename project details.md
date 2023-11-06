@@ -39,6 +39,8 @@ To use the Computer Tool Manager, follow these steps:
 Create instances of different types of tools using the respective classes (e.g., Serveur, Routeur, etc.).
 Add these tools to the Societe class using the ajouterOutil() function.
 Use the afficher() function in the Societe class to display the tools in the inventory.
+
+
 Contributors
 [Firas Farhani]
 [Jesser ben nasr ,Khaled henchir ,Chaima beya benzarti]
