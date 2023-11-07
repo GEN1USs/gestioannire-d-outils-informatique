@@ -357,6 +357,93 @@ public:
     }
 };
 
+class Fournisseur {
+private:
+    int id_fournisseur;
+    int numero_fournisseur;
+
+public:
+    Fournisseur(int id, int numero) : id_fournisseur(id), numero_fournisseur(numero) {}
+
+    // Member function to display the details of the supplier
+    void afficherFournisseur() const {
+        std::cout << "ID Fournisseur: " << id_fournisseur << ", Numero Fournisseur: " << numero_fournisseur << std::endl;
+    }
+
+    // Getters for individual attributes
+    int getIdFournisseur() const {
+        return id_fournisseur;
+    }
+
+    int getNumeroFournisseur() const {
+        return numero_fournisseur;
+    }
+
+    // Static functions to manage suppliers
+    static void ajouterFournisseur(Fournisseur fournisseur, std::vector<Fournisseur>& fournisseurs) {
+        fournisseurs.push_back(fournisseur);
+    }
+
+    static void supprimerFournisseur(int fournisseurId, std::vector<Fournisseur>& fournisseurs) {
+        for (auto it = fournisseurs.begin(); it != fournisseurs.end(); ++it) {
+            if (it->getIdFournisseur() == fournisseurId) {
+                fournisseurs.erase(it);
+                break;
+            }
+        }
+    }
+
+    static Fournisseur* rechercherFournisseur(int fournisseurId, const std::vector<Fournisseur>& fournisseurs) {
+        for (const auto& fournisseur : fournisseurs) {
+            if (fournisseur.getIdFournisseur() == fournisseurId) {
+                return const_cast<Fournisseur*>(&fournisseur);
+            }
+        }
+        return nullptr; // Supplier not found
+    }
+
+    static void afficherFournisseurs(const std::vector<Fournisseur>& fournisseurs) {
+        for (const auto& fournisseur : fournisseurs) {
+            fournisseur.afficherFournisseur();
+        }
+    }
+};
+
+class ReparateurMaintenance {
+private:
+    std::string nom;
+    std::vector<OutilInformatique> a_reparer;
+
+public:
+    ReparateurMaintenance(const std::string& nom) : nom(nom) {}
+
+    // Member function to set the state of a tool
+    void setEtat(OutilInformatique& outil, const std::string& etat) {
+        // You can add code here to set the state of the tool based on the 'etat' parameter
+        // For example, update an 'etat' attribute in the OutilInformatique class.
+        // This code depends on the specific requirements for setting the tool's state.
+        std::cout << "Setting the state of tool: " << outil.getReference() << " to " << etat << std::endl;
+    }
+
+    // Add a tool to the 'a_reparer' vector
+    void ajouterAReparer(const OutilInformatique& outil) {
+        a_reparer.push_back(outil);
+    }
+
+    // Display the tools that need maintenance
+    void afficherAReparer() const {
+        std::cout << "Tools to be repaired by " << nom << ":" << std::endl;
+        for (const OutilInformatique& outil : a_reparer) {
+            outil.afficherOutil();
+        }
+    }
+
+    // Getter for the name of the maintenance technician
+    std::string getNom() const {
+        return nom;
+    }
+};
+
 
 int main() {
     
