@@ -423,12 +423,12 @@ public:
     ReparateurMaintenance(const std::string& nom) : nom(nom) {}
 
     // Member function to set the state of a tool
-    void setEtat(OutilInformatique& outil, const std::string& etat) {
-        // You can add code here to set the state of the tool based on the 'etat' parameter
-        // For example, update an 'etat' attribute in the OutilInformatique class.
-        // This code depends on the specific requirements for setting the tool's state.
-        std::cout << "Setting the state of tool: " << outil.getReference() << " to " << etat << std::endl;
+void setEtat(OutilInformatique& outil, bool etat) {
+        outil.setEtat(etat);
+        std::cout << "Setting the state of tool: " << outil.getReference() << " to "
+                  << (etat ? "Functional" : "Not Functional") << std::endl;
     }
+
 
     // Add a tool to the 'a_reparer' vector
     void ajouterAReparer(const OutilInformatique& outil) {
