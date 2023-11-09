@@ -104,6 +104,13 @@ public:
                   << ", ID Fournisseur: " << id_fournisseur << std::endl;
     }
 
+    void setEtat(OutilInformatique& outil, bool etat) {
+        outil.setEtat(etat);
+        std::cout << "Setting the state of tool: " << outil.getReference() << " to "
+                  << (etat ? "Functional" : "Not Functional") << std::endl;
+    }
+
+
     // Getters for individual attributes
     const std::string& getType() const {
         return type;
@@ -137,11 +144,11 @@ class PC : public OutilInformatique {
 private:
     std::string os;
     std::string processor;
-    int id_user;  // Added attribute: ID of the user
+    int id_user{00000}; // Added initial value
 
 public:
     PC(const std::string& type, const std::string& reference, const std::string& modele, int quantite,
-        const std::string& os, const std::string& processor, int id_user)
+        const std::string& os, const std::string& processor, int id_user = 00000)
         : OutilInformatique(type, reference, modele, quantite, true, 1), os(os), processor(processor), id_user(id_user) {}
 
     // Member function to display PC details, including additional attributes
@@ -169,11 +176,11 @@ class Peripherique : public OutilInformatique {
 
 private:
     std::string interfaceType;
-    int id_user;
+    int id_user{00000};
 
 public:
     Peripherique(const std::string& type, const std::string& reference, const std::string& modele, int quantite,
-                 const std::string& interfaceType,int id_user)
+                 const std::string& interfaceType,int id_user = 00000)
         : OutilInformatique(type, reference, modele, quantite), interfaceType(interfaceType),id_user(id_user) {}
 
     // Member function to display peripheral details, including additional attributes
@@ -345,6 +352,8 @@ public:
 class Societe {
 private:
     std::vector<OutilInformatique*> tab;
+    std::vector<Fournisseur> fournisseurs;
+    std::vector<Utilisateur> utilisateurs;
 
 public:
     // Constructor
@@ -353,6 +362,26 @@ public:
     // Function to add an OutilInformatique to the vector
     void ajouterOutil(OutilInformatique* outil) {
         tab.push_back(outil);
+    }
+
+
+    Fournisseur rechercherFournisseur(int id_fournisseur) const {
+        for (const auto& fournisseur : fournisseurs) {
+            if (fournisseur.getId() == id_fournisseur) {
+                return fournisseur;
+            }
+        }
+        return Fournisseur(); // Fournisseur not found
+    }
+
+
+     Utilisateur rechercherUtilisateur(int id_utilisateur) const {
+        for (const auto& utilisateur : utilisateurs) {
+            if (utilisateur.getId() == id_utilisateur) {
+                return utilisateur;
+            }
+        }
+        return Utilisateur(); // Utilisateur not found
     }
 
     // Function to display the tools in the vector
@@ -424,11 +453,6 @@ public:
     ReparateurMaintenance(const std::string& nom) : nom(nom) {}
 
     // Member function to set the state of a tool
-void setEtat(OutilInformatique& outil, bool etat) {
-        outil.setEtat(etat);
-        std::cout << "Setting the state of tool: " << outil.getReference() << " to "
-                  << (etat ? "Functional" : "Not Functional") << std::endl;
-    }
 
 
     // Add a tool to the 'a_reparer' vector
