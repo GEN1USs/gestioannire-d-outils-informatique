@@ -125,21 +125,21 @@ public:
 };
 
 class PC : public OutilInformatique {
-
 private:
     std::string os;
     std::string processor;
-    int id_user;
+    int id_user;  // Added attribute: ID of the user
 
 public:
     PC(const std::string& type, const std::string& reference, const std::string& modele, int quantite,
-        const std::string& os, const std::string& processor)
-        : OutilInformatique(type, reference, modele, quantite), os(os), processor(processor) {}
+        const std::string& os, const std::string& processor, int id_user)
+        : OutilInformatique(type, reference, modele, quantite, true, 1), os(os), processor(processor), id_user(id_user) {}
 
     // Member function to display PC details, including additional attributes
     void afficherPC() const {
         afficherOutil();
-        std::cout << "Operating System: " << os << ", Processor: " << processor << std::endl;
+        std::cout << "Operating System: " << os << ", Processor: " << processor
+                  << ", ID User: " << id_user << std::endl;
     }
 
     // Getters for additional PC attributes
@@ -151,10 +151,9 @@ public:
         return processor;
     }
 
-     int getIdUser() const {
+    int getIdUser() const {
         return id_user;
     }
-
 };
 
 class Peripherique : public OutilInformatique {
@@ -165,13 +164,14 @@ private:
 
 public:
     Peripherique(const std::string& type, const std::string& reference, const std::string& modele, int quantite,
-                 const std::string& interfaceType)
-        : OutilInformatique(type, reference, modele, quantite), interfaceType(interfaceType) {}
+                 const std::string& interfaceType,int id_user)
+        : OutilInformatique(type, reference, modele, quantite), interfaceType(interfaceType),id_user(id_user) {}
 
     // Member function to display peripheral details, including additional attributes
     void afficherPeripherique() const {
         afficherOutil();
-        std::cout << "Interface Type: " << interfaceType << std::endl;
+        std::cout << "Interface Type: " << interfaceType 
+             << ", ID User: " << id_user << std::endl;
     }
 
     // Getter for the additional peripheral attribute
