@@ -129,6 +129,7 @@ class PC : public OutilInformatique {
 private:
     std::string os;
     std::string processor;
+    int id_user;
 
 public:
     PC(const std::string& type, const std::string& reference, const std::string& modele, int quantite,
@@ -150,6 +151,9 @@ public:
         return processor;
     }
 
+     int getIdUser() const {
+        return id_user;
+    }
 
 };
 
@@ -157,6 +161,7 @@ class Peripherique : public OutilInformatique {
 
 private:
     std::string interfaceType;
+    int id_user;
 
 public:
     Peripherique(const std::string& type, const std::string& reference, const std::string& modele, int quantite,
@@ -174,6 +179,9 @@ public:
         return interfaceType;
     }
 
+     int getIdUser() const {
+        return id_user;
+    }
 
 };
 
