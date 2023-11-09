@@ -121,6 +121,15 @@ public:
         return quantite;
     }
 
+     static OutilInformatique* rechercherParReference(const std::string& reference, std::vector<OutilInformatique>& tools) {
+        for (auto& tool : tools) {
+            if (tool.getReference() == reference) {
+                return &tool;
+            }
+        }
+        return nullptr; // Tool not found
+    }
+
 
 };
 
