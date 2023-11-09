@@ -79,23 +79,7 @@ public:
 
 };
 
-class PC {
-private:
-    int iduser;
-    
-public:
-    // Constructor
-    PC(int iduser) {
-        this->iduser = iduser;
-    }
 
-    // Member function to get the 'iduser' attribute
-    int getIdUser() const {
-        return iduser;
-    }
-
-
-};
 
 class OutilInformatique {
 
