@@ -104,15 +104,20 @@ protected:
     std::string reference;
     std::string modele;
     int quantite;
+    bool etat;            // Added attribute: state of the tool (true for functional, false for not functional)
+    int id_fournisseur;   // Added attribute: ID of the supplier
 
 public:
-    OutilInformatique(const std::string& type, const std::string& reference, const std::string& modele, int quantite)
-        : type(type), reference(reference), modele(modele), quantite(quantite) {}
+    OutilInformatique(const std::string& type, const std::string& reference, const std::string& modele, int quantite,
+                      bool etat, int id_fournisseur)
+        : type(type), reference(reference), modele(modele), quantite(quantite), etat(etat), id_fournisseur(id_fournisseur) {}
 
     // Member function to display the details of the tool
     void afficherOutil() const {
         std::cout << "Type: " << type << ", Reference: " << reference
-                  << ", Modele: " << modele << ", Quantite: " << quantite << std::endl;
+                  << ", Modele: " << modele << ", Quantite: " << quantite
+                  << ", Etat: " << (etat ? "Functional" : "Not Functional")
+                  << ", ID Fournisseur: " << id_fournisseur << std::endl;
     }
 
     // Getters for individual attributes
