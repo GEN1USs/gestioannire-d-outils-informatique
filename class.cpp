@@ -365,23 +365,20 @@ public:
     }
 
 
-    Fournisseur rechercherFournisseur(int id_fournisseur) const {
-        for (const auto& fournisseur : fournisseurs) {
-            if (fournisseur.getId() == id_fournisseur) {
-                return fournisseur;
-            }
-        }
-        return Fournisseur(); // Fournisseur not found
-    }
-
-
-     Utilisateur rechercherUtilisateur(int id_utilisateur) const {
+    // Method to display all utilisateurs
+    void afficherUtilisateurs() const {
         for (const auto& utilisateur : utilisateurs) {
-            if (utilisateur.getId() == id_utilisateur) {
-                return utilisateur;
-            }
+            std::cout << "ID Utilisateur: " << utilisateur.getId() << ", Nom: " << utilisateur.getNom() << std::endl;
         }
-        return Utilisateur(); // Utilisateur not found
+    }
+};
+
+
+ // Method to display all fournisseurs
+    void afficherFournisseurs() const {
+        for (const auto& fournisseur : fournisseurs) {
+            std::cout << "ID Fournisseur: " << fournisseur.getId() << ", Nom: " << fournisseur.getNom() << std::endl;
+        }
     }
 
     // Function to display the tools in the vector
